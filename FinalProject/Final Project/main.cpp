@@ -8,6 +8,7 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_primitives.h>
+#include "player.h"
 
 int main(int argc, char **argv)
 {
@@ -16,6 +17,7 @@ int main(int argc, char **argv)
     enum KEYS{UP, DOWN, SPACE};
     bool keys[3] = {false, false, false};
     
+    bool beginning = false;
     bool done = false;
     bool redraw = false;
     const int FPS = 60;
@@ -42,6 +44,8 @@ int main(int argc, char **argv)
     display = al_create_display(WIDTH, HEIGHT);
     
     //object variables
+    player myPlayer;
+    myPlayer.initSprite();
     
     event_queue = al_create_event_queue();
     timer = al_create_timer(1.0/FPS);
@@ -117,8 +121,17 @@ int main(int argc, char **argv)
         }
         if (redraw && al_is_event_queue_empty(event_queue))
         {
+            while (!beginning) {
+                al_clear_to_color(al_map_rgb(0, 0, 0));
+                al_flip_display();
+                al_rest(5.0);
+                beginning = true;
+                
+            }
+            
             redraw = false;
             al_draw_bitmap(background, 0, 0, 0);
+            myPlayer.drawPlayer();
             
             
             

@@ -24,7 +24,6 @@ void player::initSprite()
     frameHeight = 180;
     animationColumns = 5;
     animationRows = 2;
-    animationDirection = 1;
     
     image = al_load_bitmap("bird.png");
     al_convert_mask_to_alpha(image, al_map_rgb(255, 255, 255));
@@ -35,9 +34,18 @@ void player::updatePlayer(int width, int height, int dir)
     int oldx = x;
     int oldy = y;
     
-    
+    if (++frameDelay > frameCount) {
+        frameCount = 0;
+        if (++curFrame > maxFrame) {
+            curFrame = 1;
+        }
+    }
 }
 void player::drawPlayer()
 {
+    int fx = (curFrame % animationColumns) * frameWidth;
+    int fy = (curFrame / animationColumns) * frameHeight;
+    
+    al_draw_bitmap_region(image, fx, fy, frameWidth, frameHeight, x, y, 0);
     
 }
