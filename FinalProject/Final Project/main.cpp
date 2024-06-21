@@ -28,9 +28,15 @@ int main(int argc, char **argv)
     ALLEGRO_DISPLAY *display = NULL;
     ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     ALLEGRO_TIMER *timer = NULL;
-    ALLEGRO_SAMPLE *sample = NULL;
+    ALLEGRO_SAMPLE *sample1 = NULL;
     ALLEGRO_BITMAP *background = NULL;
     ALLEGRO_FONT *font = NULL;
+    ALLEGRO_BITMAP *fullHealth = NULL;
+    ALLEGRO_BITMAP *fourHealth = NULL;
+    ALLEGRO_BITMAP *threeHealth = NULL;
+    ALLEGRO_BITMAP *twoHealth = NULL;
+    ALLEGRO_BITMAP *oneHealth = NULL;
+
     
     //initialize the works
     if (!al_init()) {
@@ -45,8 +51,13 @@ int main(int argc, char **argv)
     al_init_image_addon();
     
     //background music and image
-    sample = al_load_sample("background.wav");
+    sample1 = al_load_sample("background.wav");
     background = al_load_bitmap("background.png");
+    fullHealth = al_load_bitmap("fullhealth.png");
+    fourHealth = al_load_bitmap("4health.png");
+    threeHealth = al_load_bitmap("3health.png");
+    twoHealth = al_load_bitmap("2health.png");
+    oneHealth = al_load_bitmap("1health.png");
     display = al_create_display(WIDTH, HEIGHT);
     font = al_load_font("Minecraft.ttf", 24, 0);
     
@@ -67,12 +78,20 @@ int main(int argc, char **argv)
     al_register_event_source(event_queue, al_get_timer_event_source(timer));
     al_register_event_source(event_queue, al_get_display_event_source(display));
     
-    al_play_sample(sample, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+    al_clear_to_color(al_map_rgb(255, 255, 255));
+    
+    al_play_sample(sample1, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
     al_start_timer(timer);
     
     while(!done)
     {
+        
         if (myPlayer.getLives() == 0) {
+            al_clear_to_color(al_map_rgb(0, 0, 0));
+            al_draw_bitmap(background, 0, 0, 0);
+            al_draw_textf(font, al_map_rgb(0, 0, 255), WIDTH / 2, HEIGHT / 2, ALLEGRO_ALIGN_CENTER, "Your final score is %i", myPlayer.getScore());
+            al_flip_display();
+            al_rest(10.0);
             return 0;
         }
         
@@ -114,6 +133,10 @@ int main(int argc, char **argv)
             case ALLEGRO_KEY_DOWN:
                 keys[DOWN] = true;
                 break;
+            case ALLEGRO_KEY_SPACE:
+                keys[SPACE] = true;
+                break;
+                    
             }
         }
         else if(ev.type == ALLEGRO_EVENT_KEY_UP)
@@ -143,7 +166,7 @@ int main(int argc, char **argv)
                 al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 300, ALLEGRO_ALIGN_CENTER, "Welcome to the game.");
                 al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 400, ALLEGRO_ALIGN_CENTER, "Your goal is to dodge as many fireballs as you can without getting hit.");
                 al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 500, ALLEGRO_ALIGN_CENTER, "You will have five lives to make it through all three levels, each level gets progressively harder.");
-                al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 600, ALLEGRO_ALIGN_CENTER, "You can use the up and down arrow keys to maneuver, you can also hit the space bar to do a trick.");
+                al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 600, ALLEGRO_ALIGN_CENTER, "You can use the up and down arrow keys to maneuver.");
                 al_flip_display();
                 al_rest(5.0);
                 beginning = true;
@@ -151,15 +174,33 @@ int main(int argc, char **argv)
             }
             
             redraw = false;
-            al_clear_to_color(al_map_rgb(0, 0, 0));
-            al_draw_textf(font, al_map_rgb(255, 255, 255), 10, 1075, ALLEGRO_ALIGN_LEFT, "Score = %i", myPlayer.getScore());
-            al_draw_textf(font, al_map_rgb(255, 255, 255), WIDTH / 2, 1075, ALLEGRO_ALIGN_CENTER, "Lives remaining = %i", myPlayer.getLives());
+            al_clear_to_color(al_map_rgb(255, 255, 255));
+            al_draw_textf(font, al_map_rgb(0, 0, 0), 10, 1075, ALLEGRO_ALIGN_LEFT, "Score = %i", myPlayer.getScore());
+            al_draw_textf(font, al_map_rgb(0, 0, 0), WIDTH / 2, 1075, ALLEGRO_ALIGN_CENTER, "Lives remaining = %i", myPlayer.getLives());
+            for (int i = 0; i < 5; i++) {
+                al_draw_textf(font, al_map_rgb(0, 0, 0), WIDTH - 200, 1075, ALLEGRO_ALIGN_LEFT, "Level = %i", thePipes[i].getLevel());
+            }
             al_draw_bitmap(background, 0, 0, 0);
             myPlayer.drawPlayer();
+            myPlayer.updatePlayer(WIDTH, HEIGHT);
             for (int i = 0; i < 5; i++) {
                 thePipes[i].drawPipe();
             }
-            
+            if (myPlayer.getLives() == 5) {
+                al_draw_bitmap(fullHealth, WIDTH / 2 + 100, 1050, 0);
+
+            } else if (myPlayer.getLives() == 4) {
+                al_draw_bitmap(fourHealth, WIDTH / 2 + 100, 1050, 0);
+
+            } else if (myPlayer.getLives() == 3) {
+                al_draw_bitmap(threeHealth, WIDTH / 2 + 100, 1050, 0);
+   
+            } else if (myPlayer.getLives() == 2) {
+                al_draw_bitmap(twoHealth, WIDTH / 2 + 100, 1050, 0);
+  
+            } else if (myPlayer.getLives() == 1) {
+                al_draw_bitmap(oneHealth, WIDTH / 2 + 100, 1050, 0);
+            }
 
             al_flip_display();
             

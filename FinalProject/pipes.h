@@ -1,7 +1,8 @@
 #include "player.h"
 #ifndef PIPESH
 #define PIPESH
-
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 class pipes
 {
 public:
@@ -17,7 +18,7 @@ public:
     int getY() {return y;}
     bool getLive() {return live;}
     bool setLive(bool l) {return live = l;}
-    int setLevel(int l) {return level+=l;}
+    int getLevel() {return level;}
 private:
     int x;
     int y;
@@ -28,6 +29,7 @@ private:
     int level;
     float angle;
     ALLEGRO_BITMAP *image;
+    ALLEGRO_SAMPLE *sample;
 };
 #endif
 

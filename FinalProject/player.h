@@ -1,6 +1,8 @@
 
 #ifndef player_h
 #define player_h
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 class player
 {
 public:
@@ -15,10 +17,11 @@ public:
     int getHeight() {return frameHeight;}
     int getX() {return x;}
     int getY() {return y;}
-    void removeLife() {lives--;}
+    void removeLife();
     int getLives() {return lives;}
     int getScore() {return score;}
     void addScore() {score++;}
+    void rotateSprite();
 private:
     int x;
     int y;
@@ -36,5 +39,6 @@ private:
     int animationDirection;
     
     ALLEGRO_BITMAP *image;
+    ALLEGRO_SAMPLE *sample;
 };
 #endif
