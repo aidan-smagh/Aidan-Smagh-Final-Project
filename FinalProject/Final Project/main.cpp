@@ -8,7 +8,9 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_primitives.h>
+#include <iostream>
 #include "player.h"
+#include "pipes.h"
 
 int main(int argc, char **argv)
 {
@@ -19,17 +21,21 @@ int main(int argc, char **argv)
     
     bool beginning = false;
     bool done = false;
-    bool redraw = false;
+    bool redraw = true;
     const int FPS = 60;
+    
     
     ALLEGRO_DISPLAY *display = NULL;
     ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_SAMPLE *sample = NULL;
     ALLEGRO_BITMAP *background = NULL;
+    ALLEGRO_FONT *font = NULL;
     
     //initialize the works
-    al_init();
+    if (!al_init()) {
+        return -1;
+    }
     al_install_audio();
     al_init_acodec_addon();
     al_reserve_samples(3);
@@ -42,13 +48,17 @@ int main(int argc, char **argv)
     sample = al_load_sample("background.wav");
     background = al_load_bitmap("background.png");
     display = al_create_display(WIDTH, HEIGHT);
+    font = al_load_font("Minecraft.ttf", 24, 0);
     
     //object variables
-    player myPlayer;
-    myPlayer.initSprite();
+    player myPlayer(HEIGHT);
+    pipes thePipes[5];
+    
+
+    
     
     event_queue = al_create_event_queue();
-    timer = al_create_timer(1.0/FPS);
+    timer = al_create_timer(1.0 / FPS);
     
     //init randomness
     srand(time(0));
@@ -57,72 +67,83 @@ int main(int argc, char **argv)
     al_register_event_source(event_queue, al_get_timer_event_source(timer));
     al_register_event_source(event_queue, al_get_display_event_source(display));
     
-    al_start_timer(timer);
     al_play_sample(sample, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+    al_start_timer(timer);
     
-    while (!done)
+    while(!done)
     {
+        if (myPlayer.getLives() == 0) {
+            return 0;
+        }
+        
         ALLEGRO_EVENT ev;
         al_wait_for_event(event_queue, &ev);
-        
-        if (ev.type == ALLEGRO_EVENT_TIMER)
+
+        if(ev.type == ALLEGRO_EVENT_TIMER)
         {
             redraw = true;
-            if (keys[UP]) {
-                //move up
+            if(keys[UP])
+                myPlayer.MoveUp();
+            if(keys[DOWN])
+                myPlayer.MoveDown();
+            
+            for (int i = 0; i < 5; i++) {
+                thePipes[i].startPipe(WIDTH, HEIGHT);
             }
-            if (keys[DOWN]) {
-                //move down
+            for (int i = 0; i < 5; i++) {
+                thePipes[i].updatePipe(myPlayer);
             }
-            if (keys[SPACE]) {
-                //do a flip
+            for (int i = 0; i < 5; i++) {
+                thePipes[i].collidePipe(myPlayer);
             }
-            //start the ghosts with the for loops
         }
-        else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+        else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
         {
             done = true;
         }
-        else if (ev.type == ALLEGRO_EVENT_KEY_DOWN)
+        else if(ev.type == ALLEGRO_EVENT_KEY_DOWN)
         {
             switch(ev.keyboard.keycode)
             {
-                case ALLEGRO_KEY_ESCAPE:
-                    done = true;
-                    break;
-                case ALLEGRO_KEY_UP:
-                    keys[UP] = true;
-                    break;
-                case ALLEGRO_KEY_DOWN:
-                    keys[DOWN] = true;
-                    break;
-                case ALLEGRO_KEY_SPACE:
-                    keys[SPACE] = true;
-                    break;
+            case ALLEGRO_KEY_ESCAPE:
+                done = true;
+                break;
+            case ALLEGRO_KEY_UP:
+                keys[UP] = true;
+                break;
+            case ALLEGRO_KEY_DOWN:
+                keys[DOWN] = true;
+                break;
             }
         }
-        else if (ev.type == ALLEGRO_EVENT_KEY_UP)
+        else if(ev.type == ALLEGRO_EVENT_KEY_UP)
         {
             switch(ev.keyboard.keycode)
             {
-                case ALLEGRO_KEY_ESCAPE:
-                    done = true;
-                    break;
-                case ALLEGRO_KEY_UP:
-                    keys[UP] = false;
-                    break;
-                case ALLEGRO_KEY_DOWN:
-                    keys[DOWN] = false;
-                    break;
-                case ALLEGRO_KEY_SPACE:
-                    keys[SPACE] = false;
-                    break;
+            case ALLEGRO_KEY_ESCAPE:
+                done = true;
+                break;
+            case ALLEGRO_KEY_UP:
+                keys[UP] = false;
+                break;
+            case ALLEGRO_KEY_DOWN:
+                keys[DOWN] = false;
+                break;
+            case ALLEGRO_KEY_SPACE:
+                keys[SPACE] = false;
+                break;
             }
         }
         if (redraw && al_is_event_queue_empty(event_queue))
         {
-            while (!beginning) {
-                al_clear_to_color(al_map_rgb(0, 0, 0));
+            
+            while (!beginning)
+            {
+                //al_draw_bitmap(background, 0, 0, 0);
+                al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 300, ALLEGRO_ALIGN_CENTER, "Welcome to the game.");
+                al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 400, ALLEGRO_ALIGN_CENTER, "Your goal is to dodge as many fireballs as you can without getting hit.");
+                al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 500, ALLEGRO_ALIGN_CENTER, "You will have five lives to make it through all three levels, each level gets progressively harder.");
+                al_draw_text(font, al_map_rgb(0, 0, 255), WIDTH / 2, 600, ALLEGRO_ALIGN_CENTER, "You can use the up and down arrow keys to maneuver, you can also hit the space bar to do a trick.");
                 al_flip_display();
                 al_rest(5.0);
                 beginning = true;
@@ -130,13 +151,17 @@ int main(int argc, char **argv)
             }
             
             redraw = false;
+            al_clear_to_color(al_map_rgb(0, 0, 0));
+            al_draw_textf(font, al_map_rgb(255, 255, 255), 10, 1075, ALLEGRO_ALIGN_LEFT, "Score = %i", myPlayer.getScore());
+            al_draw_textf(font, al_map_rgb(255, 255, 255), WIDTH / 2, 1075, ALLEGRO_ALIGN_CENTER, "Lives remaining = %i", myPlayer.getLives());
             al_draw_bitmap(background, 0, 0, 0);
             myPlayer.drawPlayer();
+            for (int i = 0; i < 5; i++) {
+                thePipes[i].drawPipe();
+            }
             
-            
-            
+
             al_flip_display();
-            al_rest(10.0);
             
         }
     }

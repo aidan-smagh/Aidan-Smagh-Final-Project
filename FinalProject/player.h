@@ -4,19 +4,21 @@
 class player
 {
 public:
-    player();
+    player(int HEIGHT);
     ~player();
-    void initSprite();
-    void updatePlayer(int width, int height, int dir);
+    void updatePlayer(int width, int height);
     void drawPlayer();
-    void moveUp();
-    void moveDown();
+    void MoveUp();
+    void MoveDown();
     void rotate();
     int getWidth() {return frameWidth;}
     int getHeight() {return frameHeight;}
     int getX() {return x;}
     int getY() {return y;}
     void removeLife() {lives--;}
+    int getLives() {return lives;}
+    int getScore() {return score;}
+    void addScore() {score++;}
 private:
     int x;
     int y;

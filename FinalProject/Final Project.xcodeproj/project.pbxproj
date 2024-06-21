@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C7E67C82C2548AA00536063 /* fireball.png in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7E67C72C2548AA00536063 /* fireball.png */; };
+		1C7E67CA2C2548B000536063 /* fireball.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1C7E67C92C2548B000536063 /* fireball.png */; };
+		1C7E67CC2C2548B400536063 /* fireball.png in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 1C7E67CB2C2548B400536063 /* fireball.png */; };
+		1C7E67CE2C25497300536063 /* balloon.png in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 1C7E67CD2C25497300536063 /* balloon.png */; };
+		1C7E67D02C25497900536063 /* balloon.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1C7E67CF2C25497900536063 /* balloon.png */; };
+		1C7E67D12C25497C00536063 /* balloon.png in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7E67CF2C25497900536063 /* balloon.png */; };
 		1CF1517D2C1E2990009EE423 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CF1517C2C1E2990009EE423 /* main.cpp */; };
 		1CF151912C1E29B0009EE423 /* liballegro_image.5.2.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF151842C1E29B0009EE423 /* liballegro_image.5.2.9.dylib */; };
 		1CF151922C1E29B0009EE423 /* liballegro_image.5.2.9.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 1CF151842C1E29B0009EE423 /* liballegro_image.5.2.9.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -66,6 +72,10 @@
 		1CF151E82C1E324F009EE423 /* flap.wav in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 1CF151E52C1E324F009EE423 /* flap.wav */; };
 		1CF151E92C1E324F009EE423 /* death.wav in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 1CF151E62C1E324F009EE423 /* death.wav */; };
 		1CF151EC2C1E4540009EE423 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CF151EB2C1E4540009EE423 /* player.cpp */; };
+		1CF151EE2C1F692B009EE423 /* Minecraft.ttf in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF151ED2C1F692B009EE423 /* Minecraft.ttf */; };
+		1CF151F02C1F6932009EE423 /* Minecraft.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CF151EF2C1F6932009EE423 /* Minecraft.ttf */; };
+		1CF151F22C1F693B009EE423 /* Minecraft.ttf in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 1CF151F12C1F693B009EE423 /* Minecraft.ttf */; };
+		1CF151F52C24B2FB009EE423 /* pipes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CF151F42C24B2FB009EE423 /* pipes.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,17 +89,20 @@
 				1CF151BA2C1E29D5009EE423 /* liballegro.5.2.9.dylib in CopyFiles */,
 				1CF151BB2C1E29D5009EE423 /* liballegro_video.5.2.9.dylib in CopyFiles */,
 				1CF151BC2C1E29D5009EE423 /* liballegro_dialog.5.2.9.dylib in CopyFiles */,
+				1C7E67CA2C2548B000536063 /* fireball.png in CopyFiles */,
 				1CF151BD2C1E29D5009EE423 /* liballegro_main.5.2.9.dylib in CopyFiles */,
 				1CF151BE2C1E29D5009EE423 /* liballegro_memfile.5.2.9.dylib in CopyFiles */,
 				1CF151BF2C1E29D5009EE423 /* liballegro_ttf.5.2.9.dylib in CopyFiles */,
 				1CF151C02C1E29D5009EE423 /* liballegro_acodec.5.2.9.dylib in CopyFiles */,
 				1CF151C12C1E29D5009EE423 /* liballegro_image.5.2.9.dylib in CopyFiles */,
+				1CF151F02C1F6932009EE423 /* Minecraft.ttf in CopyFiles */,
 				1CF151CF2C1E2A90009EE423 /* bird.png in CopyFiles */,
 				1CF151E12C1E3249009EE423 /* background.wav in CopyFiles */,
 				1CF151E22C1E3249009EE423 /* flap.wav in CopyFiles */,
 				1CF151E32C1E3249009EE423 /* death.wav in CopyFiles */,
 				1CF151D02C1E2A90009EE423 /* background.png in CopyFiles */,
 				1CF151D12C1E2A90009EE423 /* pipe.png in CopyFiles */,
+				1C7E67D02C25497900536063 /* balloon.png in CopyFiles */,
 				1CF151C22C1E29D5009EE423 /* liballegro_primitives.5.2.9.dylib in CopyFiles */,
 				1CF151C32C1E29D5009EE423 /* liballegro_physfs.5.2.9.dylib in CopyFiles */,
 				1CF151C42C1E29D5009EE423 /* liballegro_color.5.2.9.dylib in CopyFiles */,
@@ -110,12 +123,15 @@
 				1CF1519E2C1E29B1009EE423 /* liballegro_audio.5.2.9.dylib in Embed Libraries */,
 				1CF151982C1E29B0009EE423 /* liballegro_dialog.5.2.9.dylib in Embed Libraries */,
 				1CF151AA2C1E29B1009EE423 /* liballegro_video.5.2.9.dylib in Embed Libraries */,
+				1C7E67CC2C2548B400536063 /* fireball.png in Embed Libraries */,
 				1CF151A42C1E29B1009EE423 /* liballegro_main.5.2.9.dylib in Embed Libraries */,
 				1CF151942C1E29B0009EE423 /* liballegro_primitives.5.2.9.dylib in Embed Libraries */,
 				1CF151962C1E29B0009EE423 /* liballegro_color.5.2.9.dylib in Embed Libraries */,
+				1C7E67CE2C25497300536063 /* balloon.png in Embed Libraries */,
 				1CF1519C2C1E29B0009EE423 /* liballegro_font.5.2.9.dylib in Embed Libraries */,
 				1CF151E72C1E324F009EE423 /* background.wav in Embed Libraries */,
 				1CF151E82C1E324F009EE423 /* flap.wav in Embed Libraries */,
+				1CF151F22C1F693B009EE423 /* Minecraft.ttf in Embed Libraries */,
 				1CF151E92C1E324F009EE423 /* death.wav in Embed Libraries */,
 				1CF151D52C1E2A99009EE423 /* background.png in Embed Libraries */,
 				1CF151D62C1E2A99009EE423 /* bird.png in Embed Libraries */,
@@ -129,6 +145,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C7E67C12C2546C500536063 /* ballon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ballon.png; sourceTree = "<group>"; };
+		1C7E67C32C2546CB00536063 /* ballon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ballon.png; sourceTree = "<group>"; };
+		1C7E67C52C2546D000536063 /* ballon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ballon.png; sourceTree = "<group>"; };
+		1C7E67C72C2548AA00536063 /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball.png; sourceTree = "<group>"; };
+		1C7E67C92C2548B000536063 /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball.png; sourceTree = "<group>"; };
+		1C7E67CB2C2548B400536063 /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball.png; sourceTree = "<group>"; };
+		1C7E67CD2C25497300536063 /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon.png; sourceTree = "<group>"; };
+		1C7E67CF2C25497900536063 /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon.png; sourceTree = "<group>"; };
 		1CF151792C1E2990009EE423 /* Final Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Final Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF1517C2C1E2990009EE423 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1CF151842C1E29B0009EE423 /* liballegro_image.5.2.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_image.5.2.9.dylib; path = ../../../../../../opt/homebrew/Cellar/allegro/5.2.9.1/lib/liballegro_image.5.2.9.dylib; sourceTree = "<group>"; };
@@ -177,6 +201,11 @@
 		1CF151E62C1E324F009EE423 /* death.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = death.wav; sourceTree = "<group>"; };
 		1CF151EA2C1E4431009EE423 /* player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		1CF151EB2C1E4540009EE423 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		1CF151ED2C1F692B009EE423 /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
+		1CF151EF2C1F6932009EE423 /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
+		1CF151F12C1F693B009EE423 /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
+		1CF151F42C24B2FB009EE423 /* pipes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pipes.cpp; sourceTree = "<group>"; };
+		1CF151F62C24B306009EE423 /* pipes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pipes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,14 +216,17 @@
 				1CF151A12C1E29B1009EE423 /* liballegro_ttf.5.2.9.dylib in Frameworks */,
 				1CF151A72C1E29B1009EE423 /* liballegro_memfile.5.2.9.dylib in Frameworks */,
 				1CF151912C1E29B0009EE423 /* liballegro_image.5.2.9.dylib in Frameworks */,
+				1C7E67C82C2548AA00536063 /* fireball.png in Frameworks */,
 				1CF151A52C1E29B1009EE423 /* liballegro_physfs.5.2.9.dylib in Frameworks */,
 				1CF1519D2C1E29B0009EE423 /* liballegro_audio.5.2.9.dylib in Frameworks */,
+				1CF151EE2C1F692B009EE423 /* Minecraft.ttf in Frameworks */,
 				1CF151972C1E29B0009EE423 /* liballegro_dialog.5.2.9.dylib in Frameworks */,
 				1CF151A92C1E29B1009EE423 /* liballegro_video.5.2.9.dylib in Frameworks */,
 				1CF151A32C1E29B1009EE423 /* liballegro_main.5.2.9.dylib in Frameworks */,
 				1CF151932C1E29B0009EE423 /* liballegro_primitives.5.2.9.dylib in Frameworks */,
 				1CF151952C1E29B0009EE423 /* liballegro_color.5.2.9.dylib in Frameworks */,
 				1CF1519B2C1E29B0009EE423 /* liballegro_font.5.2.9.dylib in Frameworks */,
+				1C7E67D12C25497C00536063 /* balloon.png in Frameworks */,
 				1CF151C92C1E2A8A009EE423 /* pipe.png in Frameworks */,
 				1CF151CA2C1E2A8A009EE423 /* bird.png in Frameworks */,
 				1CF151CB2C1E2A8A009EE423 /* background.png in Frameworks */,
@@ -212,6 +244,16 @@
 		1CF151702C1E2990009EE423 = {
 			isa = PBXGroup;
 			children = (
+				1C7E67CD2C25497300536063 /* balloon.png */,
+				1C7E67CF2C25497900536063 /* balloon.png */,
+				1C7E67C92C2548B000536063 /* fireball.png */,
+				1C7E67CB2C2548B400536063 /* fireball.png */,
+				1C7E67C32C2546CB00536063 /* ballon.png */,
+				1C7E67C52C2546D000536063 /* ballon.png */,
+				1CF151F42C24B2FB009EE423 /* pipes.cpp */,
+				1CF151F62C24B306009EE423 /* pipes.h */,
+				1CF151EF2C1F6932009EE423 /* Minecraft.ttf */,
+				1CF151F12C1F693B009EE423 /* Minecraft.ttf */,
 				1CF151EA2C1E4431009EE423 /* player.h */,
 				1CF151EB2C1E4540009EE423 /* player.cpp */,
 				1CF151DE2C1E3249009EE423 /* background.wav */,
@@ -264,6 +306,9 @@
 		1CF151832C1E29B0009EE423 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C7E67C72C2548AA00536063 /* fireball.png */,
+				1C7E67C12C2546C500536063 /* ballon.png */,
+				1CF151ED2C1F692B009EE423 /* Minecraft.ttf */,
 				1CF151DA2C1E3242009EE423 /* background.wav */,
 				1CF151D82C1E3242009EE423 /* death.wav */,
 				1CF151D92C1E3242009EE423 /* flap.wav */,
@@ -347,6 +392,7 @@
 			files = (
 				1CF151EC2C1E4540009EE423 /* player.cpp in Sources */,
 				1CF1517D2C1E2990009EE423 /* main.cpp in Sources */,
+				1CF151F52C24B2FB009EE423 /* pipes.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
